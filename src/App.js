@@ -1,24 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import FormCreator from './components/FormCreator';
 
 function App() {
+
+  const formTemplate = [
+    { label: 'First Name', name: 'firstName', type: 'text', placeholder: 'Enter your first name' },
+    { label: 'Last Name', name: 'lastName', type: 'text', placeholder: 'Enter your last name' },
+    { label: 'Email', name: 'email', type: 'email', placeholder: 'Enter your email' },
+    { label: 'Phone', name: 'phone', type: 'tel', placeholder: 'Enter your phone number' },
+  ];
+
+  const handleFormSubmit = () => {
+    alert(`Form submitted successfully!`);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>Dynamic Form Test</h1>
+      <div className="Page">
+        <FormCreator
+          formTemplate={formTemplate}
+          formName="User Registration Form"
+          submitButtonLabel="Register"
+          onSubmit={handleFormSubmit}
+        />
+      </div>
+    </>
   );
 }
 
