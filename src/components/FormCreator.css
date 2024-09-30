@@ -1,11 +1,3 @@
-:root {
-    --primary-color: #da2c43;
-    --secondary-color: #f9f7f3;
-    --trim-color: #da2c43;
-    --textBox-color: #fff;
-    --text-color: #333;
-}
-
 * {
     box-sizing: border-box;
 }
@@ -20,7 +12,7 @@
     position: relative;
     max-width: 700px;
     width: 100%;
-    background: var(--secondary-color);
+    background: #266DD3; 
     padding: 25px;
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
@@ -35,7 +27,7 @@
 
 .container header {
     font-size: 1.5rem;
-    color: var(--text-color);
+    color: black;
     font-weight: 500;
     text-align: center;
 }
@@ -50,11 +42,12 @@
 }
 
 .input-box label {
-    color: var(--text-color);
+    color: black; 
+    font-size: 1.1rem; 
 }
 
 .input-box input {
-    background-color: var(--textBox-color);
+    background-color: #fff; 
 }
 
 .input-box input,
@@ -64,7 +57,6 @@
     width: 100%;
     outline: none;
     font-size: 1rem;
-    color: #707070;
     margin-top: 8px;
     border: 1px solid #dddddd;
     border-radius: 6px;
@@ -78,18 +70,19 @@
 .form button {
     height: 55px;
     width: 100%;
-    color: #fff;
+    color: #fff; 
     font-size: 1rem;
     font-weight: 400;
     margin-top: 30px;
     border: none;
     cursor: pointer;
     transition: all 0.2s ease;
-    background: var(--primary-color);
+    background: #344055; 
+    border-radius: 25px; 
 }
 
 .form button:hover {
-    background: var(--primary-color);
+    background: black; 
 }
 
 h1 {
