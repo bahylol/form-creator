@@ -12,7 +12,7 @@
     position: relative;
     max-width: 700px;
     width: 100%;
-    background: #266DD3; 
+    background: #266DD3;
     padding: 25px;
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
@@ -42,16 +42,19 @@
 }
 
 .input-box label {
-    color: black; 
-    font-size: 1.1rem; 
-}
-
-.input-box input {
-    background-color: #fff; 
+    color: black;
+    font-size: 1.1rem;
 }
 
 .input-box input,
-.select-box {
+.input-box select {
+    /* Added select here */
+    background-color: #fff;
+}
+
+.input-box input,
+.input-box select {
+    /* Style both input and select elements */
     position: relative;
     height: 50px;
     width: 100%;
@@ -63,30 +66,59 @@
     padding: 0 15px;
 }
 
-.input-box input:focus {
+.input-box input:focus,
+.input-box select:focus {
+    /* Added focus style for select */
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
 
 .form button {
     height: 55px;
     width: 100%;
-    color: #fff; 
+    color: #fff;
     font-size: 1rem;
     font-weight: 400;
     margin-top: 30px;
     border: none;
     cursor: pointer;
     transition: all 0.2s ease;
-    background: #344055; 
-    border-radius: 25px; 
+    background: #344055;
+    border-radius: 25px;
 }
 
 .form button:hover {
-    background: black; 
+    background: black;
 }
 
 h1 {
     text-align: center;
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: row;
+    margin-top: 8px;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.radio-option:last-child {
+    margin-right: 0;
+}
+
+.radio-option input {
+    margin-right: 5px;
+    transform: scale(1.5);
+    cursor: pointer;
+}
+
+.radio-option label {
+    font-size: 1.1rem;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 500px) {
