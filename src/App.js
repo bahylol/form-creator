@@ -19,24 +19,29 @@ function App() {
   ];
 
   const formTemplate3 = [
-    { label: 'First Name', name: 'firstName', type: 'text', placeholder: 'John' },
-    { label: 'Last Name', name: 'lastName', type: 'text', placeholder: 'Doe' },
-    { label: 'Email', name: 'email', type: 'email', placeholder: 'john.doe@example.com' },
-    { label: 'Phone', name: 'phone', type: 'tel', placeholder: '+1234567890' },
+    { label: 'First Name', name: 'firstName', type: 'text', placeholder: 'Enter your first name', required: true },
+    { label: 'Last Name', name: 'lastName', type: 'text', placeholder: 'Enter your last name', required: true },
+    { label: 'Email', name: 'email', type: 'email', placeholder: 'Enter your email', required: true },
+    { label: 'Phone', name: 'phone', type: 'tel', placeholder: 'Enter your phone number', required: false },
     {
-      label: 'Country',
-      name: 'country',
-      type: 'select',
-      options: ['USA', 'Canada', 'UK', 'Australia'],
+      label: 'Favorite Color',
+      name: 'color',
+      type: 'dropdown',
+      required: true,
+      options: [
+        { value: 'red', label: 'Red' },
+        { value: 'blue', label: 'Blue' },
+        { value: 'green', label: 'Green' },
+      ],
     },
     {
       label: 'Gender',
       name: 'gender',
       type: 'radio',
+      required: true,
       options: [
-        { label: 'Male', value: 'male' },
-        { label: 'Female', value: 'female' },
-        { label: 'Other', value: 'other' },
+        { value: 'male', label: 'Male' },
+        { value: 'female', label: 'Female' },
       ],
     },
   ];

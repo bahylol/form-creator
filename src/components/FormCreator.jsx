@@ -28,7 +28,12 @@ const FormCreator = ({ formTemplate, formName, submitButtonLabel, onSubmit }) =>
 
                         {/* Drop Down Menu */}
                         {field.type === 'select' ? (
-                            <select name={field.name} value={formData[field.name] || ''} onChange={handleChange}>
+                            <select
+                                name={field.name}
+                                value={formData[field.name] || ''}
+                                onChange={handleChange}
+                                required={field.required}
+                            >
                                 {field.options.map((option, idx) => (
                                     <option key={idx} value={option}>{option}</option>
                                 ))}
@@ -47,6 +52,7 @@ const FormCreator = ({ formTemplate, formName, submitButtonLabel, onSubmit }) =>
                                                 id={`${field.name}-${option.value}`}
                                                 checked={formData[field.name] === option.value}
                                                 onChange={handleChange}
+                                                required={field.required}
                                             />
                                             <label htmlFor={`${field.name}-${option.value}`}>{option.label}</label>
                                         </div>
@@ -62,6 +68,7 @@ const FormCreator = ({ formTemplate, formName, submitButtonLabel, onSubmit }) =>
                                         placeholder={field.placeholder}
                                         value={formData[field.name] || ''}
                                         onChange={handleChange}
+                                        required={field.required}
                                     />
                                 )}
                     </div>
