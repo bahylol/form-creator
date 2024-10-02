@@ -121,6 +121,13 @@ h1 {
     cursor: pointer;
 }
 
+.error-message {
+    color: #b22222;
+    margin-left: 7px;
+    display: inline;
+    font-size: 0.85rem;
+}
+
 @media screen and (max-width: 500px) {
     .form .column {
         flex-wrap: wrap;
