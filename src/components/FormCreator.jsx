@@ -1,76 +1,89 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useForm, Controller } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 import './FormCreator.css';
 
 const FormCreator = ({ formTemplate, formName, submitButtonLabel, onSubmit }) => {
-    const [formData, setFormData] = useState({});
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+    // Build the Yup validation schema based on formTemplate
+    const validationSchema = yup.object().shape(
+        formTemplate.reduce((acc, field) => {
+            if (field.validation) {
+                acc[field.name] = field.validation; // Apply validation rule from formTemplate
+            }
+            return acc;
+        }, {})
+    );
+
+    // useForm hook from react-hook-form
+    const { handleSubmit, control, formState: { errors } } = useForm({
+        resolver: yupResolver(validationSchema),
+    });
+
+    const onSubmitForm = (data) => {
+        onSubmit(data);
     };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        onSubmit(formData);
-    }
 
     return (
         <div className="container">
-            {/* form Name */}
+            {/* Form Name */}
             <header>{formName}</header>
 
-            <form className="form" onSubmit={handleSubmit}>
+            <form className="form" onSubmit={handleSubmit(onSubmitForm)}>
                 {formTemplate.map((field, index) => (
                     <div className="input-box" key={index}>
 
-                        {/* label */}
-                        <label htmlFor={field.name}>{field.label}</label>
+                        {/* Label with with error display */}
+                        <label htmlFor={field.name}>
+                            {field.label}
+                            {errors[field.name] && <span className="error-message">* {errors[field.name]?.message}</span>}
+                        </label>
 
-                        {/* Drop Down Menu */}
-                        {field.type === 'select' ? (
-                            <select
-                                name={field.name}
-                                value={formData[field.name] || ''}
-                                onChange={handleChange}
-                                required={field.required}
-                            >
-                                {field.options.map((option, idx) => (
-                                    <option key={idx} value={option}>{option}</option>
-                                ))}
-                            </select>
-                        ) :
+                        {/* Dynamic Form Inputs */}
+                        <Controller
+                            control={control}
+                            name={field.name}
+                            render={({ field: controllerField }) => (
 
-                            // Radio Buttons 
-                            field.type === 'radio' ? (
-                                <div className="radio-group">
-                                    {field.options.map((option, i) => (
-                                        <div className="radio-option" key={i}>
-                                            <input
-                                                type="radio"
-                                                name={field.name}
-                                                value={option.value}
-                                                id={`${field.name}-${option.value}`}
-                                                checked={formData[field.name] === option.value}
-                                                onChange={handleChange}
-                                                required={field.required}
-                                            />
-                                            <label htmlFor={`${field.name}-${option.value}`}>{option.label}</label>
+                                // Drop down menu
+                                field.type === 'select' ? (
+                                    <select {...controllerField}>
+                                        {field.options.map((option, idx) => (
+                                            <option key={idx} value={option}>
+                                                {option}
+                                            </option>
+                                        ))}
+                                    </select>
+                                ) :
+
+                                    //Radio Buttons
+                                    field.type === 'radio' ? (
+                                        <div className="radio-group">
+                                            {field.options.map((option, i) => (
+                                                <div className="radio-option" key={i}>
+                                                    <input
+                                                        type="radio"
+                                                        value={option.value}
+                                                        id={`${field.name}-${option.value}`}
+                                                        checked={controllerField.value === option.value}
+                                                        onChange={() => controllerField.onChange(option.value)}
+                                                    />
+                                                    <label htmlFor={`${field.name}-${option.value}`}>{option.label}</label>
+                                                </div>
+                                            ))}
                                         </div>
-                                    ))}
-                                </div>
-                            ) :
+                                    ) : (
 
-                                //default
-                                (
-                                    <input
-                                        type={field.type}
-                                        name={field.name}
-                                        placeholder={field.placeholder}
-                                        value={formData[field.name] || ''}
-                                        onChange={handleChange}
-                                        required={field.required}
-                                    />
-                                )}
+                                        //Default
+                                        <input
+                                            type={field.type}
+                                            placeholder={field.placeholder}
+                                            {...controllerField}
+                                        />
+                                    )
+                            )}
+                        />
                     </div>
                 ))}
 
