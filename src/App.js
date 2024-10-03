@@ -1,5 +1,4 @@
 import './App.css';
-import * as yup from 'yup';
 import FormCreator from './components/FormCreator';
 
 function App() {
@@ -10,44 +9,69 @@ function App() {
       name: 'firstName',
       type: 'text',
       placeholder: 'Enter your first name',
-      validation: yup.string().required('First Name is required')
+      validation: [
+        { type: 'string' },
+        { required: true, message: 'First Name is required' },
+        { min: 2, message: 'First Name must be at least 2 characters' }
+      ]
     },
     {
       label: 'Last Name',
       name: 'lastName',
       type: 'text',
       placeholder: 'Enter your last name',
-      validation: yup.string().required('Last Name is required')
+      validation: [
+        { type: 'string' },
+        { required: true, message: 'Last Name is required' },
+        { min: 2, message: 'Last Name must be at least 2 characters' }
+      ]
     },
     {
       label: 'Email',
       name: 'email',
       type: 'email',
       placeholder: 'Enter your email',
-      validation: yup.string().email('Must be a valid email').required('Email is required')
+      validation: [
+        { type: 'email', message: 'Must be a valid email' },
+        { required: true, message: 'Email is required' }
+      ]
     },
     {
       label: 'Phone',
       name: 'phone',
       type: 'tel',
       placeholder: 'Enter your phone number',
-      validation: yup.string().matches(/^[0-9]+$/, 'Phone number must contain only digits')
+      validation: [
+        { type: 'string' },
+        { required: true, message: 'Phone is required' },
+        { matches: /^[0-9]+$/, message: 'Phone number must contain only digits' },
+        { min: 10, message: 'Phone number must be at least 10 digits' }
+      ]
     },
     {
       label: 'Gender',
       name: 'gender',
       type: 'radio',
-      options: [{ label: 'Male', value: 'male' }, { label: 'Female', value: 'female' }],
+      options: [
+        { label: 'Male', value: 'male' },
+        { label: 'Female', value: 'female' }
+      ],
+      validation: [
+        { type: 'radio' },
+        { required: true, message: 'Gender is required' }
+      ]
     },
     {
       label: 'Country',
       name: 'country',
       type: 'select',
       options: ['Please Select', 'USA', 'Canada', 'Germany'],
-      validation: yup.string().required('Please select a country')
+      validation: [
+        { type: 'select' },
+        { required: true, message: 'Please select a country' }
+      ]
     }
   ];
-
 
   const formTemplate2 = [
     {
@@ -55,28 +79,42 @@ function App() {
       name: 'firstName',
       type: 'text',
       placeholder: 'Enter your first name',
-      validation: yup.string().required('First Name is required')
+      validation: [
+        { type: 'string' },
+        { required: true, message: 'First Name is required' },
+        { min: 2, message: 'First Name must be at least 2 characters' }
+      ]
     },
     {
       label: 'Last Name',
       name: 'lastName',
       type: 'text',
       placeholder: 'Enter your last name',
-      validation: yup.string().required('Last Name is required')
+      validation: [
+        { type: 'string' },
+        { required: true, message: 'Last Name is required' },
+        { min: 2, message: 'Last Name must be at least 2 characters' }
+      ]
     },
     {
       label: 'Email',
       name: 'email',
       type: 'email',
       placeholder: 'Enter your email',
-      validation: yup.string().email('Must be a valid email').required('Email is required')
+      validation: [
+        { type: 'email', message: 'Must be a valid email' },
+        { required: true, message: 'Email is required' }
+      ]
     },
     {
       label: 'Comments',
       name: 'comments',
       type: 'textarea',
       placeholder: 'Enter your feedback here',
-      validation: yup.string().required('Feedback is required')
+      validation: [
+        { type: 'string' },
+        { required: true, message: 'Feedback is required' }
+      ]
     },
     {
       label: 'Rating',
@@ -89,11 +127,12 @@ function App() {
         { label: 'Good', value: '4' },
         { label: 'Excellent', value: '5' }
       ],
-      validation: yup.string().required('Rating is required')
+      validation: [
+        { type: 'radio' },
+        { required: true, message: 'Rating is required' }
+      ]
     }
   ];
-
-
 
   const handleFormSubmit = (formData) => {
     const formDataString = Object.entries(formData)
