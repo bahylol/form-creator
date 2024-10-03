@@ -3,6 +3,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import './FormCreator.css';
+import { mapValidationRule } from '../utils/yupMapper';
 
 const FormCreator = ({ formTemplate, formName, submitButtonLabel, onSubmit }) => {
 
@@ -10,7 +11,7 @@ const FormCreator = ({ formTemplate, formName, submitButtonLabel, onSubmit }) =>
     const validationSchema = yup.object().shape(
         formTemplate.reduce((acc, field) => {
             if (field.validation) {
-                acc[field.name] = field.validation; // Apply validation rule from formTemplate
+                acc[field.name] = mapValidationRule(field);
             }
             return acc;
         }, {})
