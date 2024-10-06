@@ -5,7 +5,7 @@ import * as yup from 'yup';
 import './FormCreator.css';
 import { mapValidationRule } from '../utils/yupMapper';
 
-const FormCreator = ({ formTemplate, formName, submitButtonLabel, onSubmit }) => {
+const FormCreator = ({ formTemplate, formStyle, onSubmit }) => {
 
     // Build the Yup validation schema based on formTemplate
     const validationSchema = yup.object().shape(
@@ -29,16 +29,16 @@ const FormCreator = ({ formTemplate, formName, submitButtonLabel, onSubmit }) =>
     return (
         <div className="container">
             {/* Form Name */}
-            <header>{formName}</header>
+            <header style={formStyle.formNameStyle}>{formStyle.formName || "Form"}</header>
 
             <form className="form" onSubmit={handleSubmit(onSubmitForm)}>
                 {formTemplate.map((field, index) => (
                     <div className="input-box" key={index}>
 
                         {/* Label with with error display */}
-                        <label htmlFor={field.name}>
+                        <label htmlFor={field.name} style={formStyle.inputBoxLabel}>
                             {field.label}
-                            {errors[field.name] && <span className="error-message">* {errors[field.name]?.message}</span>}
+                            {errors[field.name] && <span className="error-message" style={formStyle.errorMessage}>* {errors[field.name]?.message}</span>}
                         </label>
 
                         {/* Dynamic Form Inputs */}
@@ -49,7 +49,7 @@ const FormCreator = ({ formTemplate, formName, submitButtonLabel, onSubmit }) =>
 
                                 // Drop down menu
                                 field.type === 'select' ? (
-                                    <select {...controllerField}>
+                                    <select style={formStyle.dropDownMenu} {...controllerField}>
                                         {field.options.map((option, idx) => (
                                             <option key={idx} value={option}>
                                                 {option}
@@ -70,7 +70,7 @@ const FormCreator = ({ formTemplate, formName, submitButtonLabel, onSubmit }) =>
                                                         checked={controllerField.value === option.value}
                                                         onChange={() => controllerField.onChange(option.value)}
                                                     />
-                                                    <label htmlFor={`${field.name}-${option.value}`}>{option.label}</label>
+                                                    <label htmlFor={`${field.name}-${option.value}`} style={formStyle.radioButton}>{option.label}</label>
                                                 </div>
                                             ))}
                                         </div>
@@ -81,6 +81,7 @@ const FormCreator = ({ formTemplate, formName, submitButtonLabel, onSubmit }) =>
                                             type={field.type}
                                             placeholder={field.placeholder}
                                             {...controllerField}
+                                            style={formStyle.inputBox}
                                         />
                                     )
                             )}
@@ -89,7 +90,7 @@ const FormCreator = ({ formTemplate, formName, submitButtonLabel, onSubmit }) =>
                 ))}
 
                 {/* Submit button */}
-                <button type="submit">{submitButtonLabel}</button>
+                <button type="submit" style={formStyle.submitButton}>{formStyle.submitButtonLabel || "submit"}</button>
             </form>
         </div>
     );

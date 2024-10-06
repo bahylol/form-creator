@@ -73,6 +73,18 @@ function App() {
     }
   ];
 
+  const formStyle1 = {
+    // formName: "User Registration Form",
+    formNameStyle: { color: "orange", background: "green" },
+    // submitButtonLabel: "Register",
+    inputBoxLabel: { color: "red", fontSize: "1.1rem" },
+    inputBox: { background: "black" },
+    errorMessage: { color: "yellow" },
+    dropDownMenu: { color: "purple", background: "green" },
+    radioButton: { color: "yellow" },
+    submitButton: { color: "purple", background: "green" }
+  }
+
   const formTemplate2 = [
     {
       label: 'First Name',
@@ -134,6 +146,11 @@ function App() {
     }
   ];
 
+  const formStyle2 = {
+    formName: "Feedback",
+    submitButtonLabel: "Send Feedback"
+  }
+
   const handleFormSubmit = (formData) => {
     const formDataString = Object.entries(formData)
       .map(([key, value]) => `${key}: ${value}`)
@@ -149,8 +166,7 @@ function App() {
       <div className="Page">
         <FormCreator
           formTemplate={formTemplate1}
-          formName="User Registration Form"
-          submitButtonLabel="Register"
+          formStyle={formStyle1}
           onSubmit={handleFormSubmit}
         />
       </div>
@@ -161,8 +177,7 @@ function App() {
       <div className="Page">
         <FormCreator
           formTemplate={formTemplate2}
-          formName="Feedback"
-          submitButtonLabel="Send Feedback"
+          formStyle={formStyle2}
           onSubmit={handleFormSubmit}
         />
       </div>
