@@ -7,6 +7,10 @@ import { mapValidationRule } from '../utils/yupMapper';
 
 const FormCreator = ({ formTemplate, formStyle, onSubmit }) => {
 
+    if (!formStyle) {
+        formStyle = {};
+    }
+    
     // Build the Yup validation schema based on formTemplate
     const validationSchema = yup.object().shape(
         formTemplate.reduce((acc, field) => {
