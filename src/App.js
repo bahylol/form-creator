@@ -70,18 +70,36 @@ function App() {
         { type: 'select' },
         { required: true, message: 'Please select a country' }
       ]
-    }
+    },
+    {
+      label: 'Hobbies',
+      name: 'hobbies',
+      type: 'checkbox',
+      options: [
+        { label: 'Reading', value: 'reading' },
+        { label: 'Gaming', value: 'gaming' },
+        { label: 'Traveling', value: 'traveling' },
+        { label: 'Cooking', value: 'cooking' }
+      ],
+      validation: [
+        { type: 'checkbox' },
+        { required: true, message: 'Please select at least on hobby' }
+      ]
+    },
   ];
 
   const formStyle1 = {
-    // formName: "User Registration Form",
+    container: { background: "blue" },
+    formName: "User Registration Form",
     formNameStyle: { color: "orange", background: "green" },
-    // submitButtonLabel: "Register",
+    submitButtonLabel: "Register",
+    inputBox: { width: "30%" },
     inputBoxLabel: { color: "red", fontSize: "1.1rem" },
-    inputBox: { background: "black" },
+    defaultInput: { background: "yellow" },
     errorMessage: { color: "yellow" },
     dropDownMenu: { color: "purple", background: "green" },
     radioButton: { color: "yellow" },
+    checkbox: { color: "pink" },
     submitButton: { color: "purple", background: "green" }
   }
 
@@ -146,11 +164,6 @@ function App() {
     }
   ];
 
-  const formStyle2 = {
-    formName: "Feedback",
-    submitButtonLabel: "Send Feedback"
-  }
-
   const handleFormSubmit = (formData) => {
     const formDataString = Object.entries(formData)
       .map(([key, value]) => `${key}: ${value}`)
@@ -177,7 +190,6 @@ function App() {
       <div className="Page">
         <FormCreator
           formTemplate={formTemplate2}
-          formStyle={formStyle2}
           onSubmit={handleFormSubmit}
         />
       </div>
