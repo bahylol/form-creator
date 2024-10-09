@@ -19,12 +19,6 @@
     min-width: 500px;
 }
 
-@media (max-width: 500px) {
-    .container {
-        min-width: auto;
-    }
-}
-
 .container header {
     font-size: 1.5rem;
     color: black;
@@ -48,13 +42,7 @@
 
 .input-box input,
 .input-box select {
-    /* Added select here */
     background-color: #fff;
-}
-
-.input-box input,
-.input-box select {
-    /* Style both input and select elements */
     position: relative;
     height: 50px;
     width: 100%;
@@ -64,12 +52,6 @@
     border: 1px solid #dddddd;
     border-radius: 6px;
     padding: 0 15px;
-}
-
-.input-box input:focus,
-.input-box select:focus {
-    /* Added focus style for select */
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
 
 .form button {
@@ -97,7 +79,7 @@ h1 {
 .radio-group,
 .checkbox-group {
     display: flex;
-    flex-wrap: wrap; /* Allow items to wrap */
+    flex-wrap: wrap; 
     margin-top: 8px;
 }
 
@@ -133,7 +115,11 @@ h1 {
     font-size: 0.85rem;
 }
 
-@media screen and (max-width: 500px) {
+@media (max-width: 500px) {
+    .container {
+        min-width: auto;
+    }
+
     .form .column {
         flex-wrap: wrap;
     }
