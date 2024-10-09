@@ -10,7 +10,7 @@ const FormCreator = ({ formTemplate, formStyle, onSubmit }) => {
     if (!formStyle) {
         formStyle = {};
     }
-    
+
     // Build the Yup validation schema based on formTemplate
     const validationSchema = yup.object().shape(
         formTemplate.reduce((acc, field) => {
@@ -78,16 +78,43 @@ const FormCreator = ({ formTemplate, formStyle, onSubmit }) => {
                                                 </div>
                                             ))}
                                         </div>
-                                    ) : (
+                                    ) :
 
-                                        //Default
-                                        <input
-                                            type={field.type}
-                                            placeholder={field.placeholder}
-                                            {...controllerField}
-                                            style={formStyle.inputBox}
-                                        />
-                                    )
+                                        // Check Boxes
+                                        field.type === 'checkbox' ? (
+                                            <div className="checkbox-group">
+                                                {field.options.map((option, i) => (
+                                                    <div className="checkbox-option" key={i}>
+                                                        <input
+                                                            type="checkbox"
+                                                            value={option.value}
+                                                            id={`${field.name}-${option.value}`}
+                                                            checked={controllerField.value?.includes(option.value) || false}
+                                                            onChange={() => {
+                                                                const currentValue = controllerField.value || []; // Default to an empty array if undefined
+                                                                if (currentValue.includes(option.value)) {
+                                                                    controllerField.onChange(currentValue.filter(val => val !== option.value));
+                                                                } else {
+                                                                    controllerField.onChange([...currentValue, option.value]);
+                                                                }
+                                                            }}
+                                                        />
+                                                        <label htmlFor={`${field.name}-${option.value}`} style={formStyle.checkbox}>
+                                                            {option.label}
+                                                        </label>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        ) : (
+
+                                            //Default
+                                            <input
+                                                type={field.type}
+                                                placeholder={field.placeholder}
+                                                {...controllerField}
+                                                style={formStyle.inputBox}
+                                            />
+                                        )
                             )}
                         />
                     </div>
