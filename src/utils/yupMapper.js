@@ -5,6 +5,9 @@ const applyRule = (validator, rule) => {
 
     if (rule.type === 'string' || rule.type === 'select' || rule.type === 'radio') {
         validator = yup.string();
+    }
+    else if (rule.type === 'checkbox') {
+        validator = yup.array();
     } else if (rule.type === 'email') {
         validator = yup.string().email(rule.message || 'Invalid email');
     } else if (rule.type === 'number') {
