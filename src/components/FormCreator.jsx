@@ -31,13 +31,13 @@ const FormCreator = ({ formTemplate, formStyle, onSubmit }) => {
     };
 
     return (
-        <div className="container">
+        <div className="container" style={formStyle.container}>
             {/* Form Name */}
             <header style={formStyle.formNameStyle}>{formStyle.formName || "Form"}</header>
 
             <form className="form" onSubmit={handleSubmit(onSubmitForm)}>
                 {formTemplate.map((field, index) => (
-                    <div className="input-box" key={index}>
+                    <div className="input-box"  style={formStyle.inputBox} key={index}>
 
                         {/* Label with with error display */}
                         <label htmlFor={field.name} style={formStyle.inputBoxLabel}>
@@ -112,7 +112,7 @@ const FormCreator = ({ formTemplate, formStyle, onSubmit }) => {
                                                 type={field.type}
                                                 placeholder={field.placeholder}
                                                 {...controllerField}
-                                                style={formStyle.inputBox}
+                                                style={formStyle.defaultInput}
                                             />
                                         )
                             )}
