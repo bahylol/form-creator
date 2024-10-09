@@ -94,55 +94,33 @@ h1 {
     text-align: center;
 }
 
-.radio-group {
-    display: flex;
-    flex-direction: row;
-    margin-top: 8px;
-}
-
-.radio-option {
-    display: flex;
-    align-items: center;
-    margin-right: 20px;
-}
-
-.radio-option:last-child {
-    margin-right: 0;
-}
-
-.radio-option input {
-    margin-right: 5px;
-    transform: scale(1.5);
-    cursor: pointer;
-}
-
-.radio-option label {
-    font-size: 1.1rem;
-    cursor: pointer;
-}
-
+.radio-group,
 .checkbox-group {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap; /* Allow items to wrap */
     margin-top: 8px;
 }
 
+.radio-option,
 .checkbox-option {
     display: flex;
     align-items: center;
     margin-right: 20px;
 }
 
+.radio-option:last-child,
 .checkbox-option:last-child {
     margin-right: 0;
 }
 
+.radio-option input,
 .checkbox-option input {
     margin-right: 5px;
     transform: scale(1.5);
     cursor: pointer;
 }
 
+.radio-option label,
 .checkbox-option label {
     font-size: 1.1rem;
     cursor: pointer;
