@@ -1,0 +1,38 @@
+{
+    "container": {
+        "background": "blue"
+    },
+    "formName": "User Registration Form",
+    "formNameStyle": {
+        "color": "orange",
+        "background": "green"
+    },
+    "submitButtonLabel": "Register",
+    "inputBox": {
+        "width": "30%"
+    },
+    "inputBoxLabel": {
+        "color": "red",
+        "fontSize": "1.1rem"
+    },
+    "defaultInput": {
+        "background": "yellow"
+    },
+    "errorMessage": {
+        "color": "yellow"
+    },
+    "dropDownMenu": {
+        "color": "purple",
+        "background": "green"
+    },
+    "radioButton": {
+        "color": "yellow"
+    },
+    "checkbox": {
+        "color": "pink"
+    },
+    "submitButton": {
+        "color": "purple",
+        "background": "green"
+    }
+}
