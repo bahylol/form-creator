@@ -1,0 +1,60 @@
+[
+    {
+        "label": "Email",
+        "name": "email",
+        "type": "email",
+        "placeholder": "Enter your email",
+        "validation": [
+            {
+                "type": "email",
+                "message": "Must be a valid email"
+            },
+            {
+                "required": true,
+                "message": "Email is required"
+            }
+        ]
+    },
+    {
+        "label": "Password",
+        "name": "password",
+        "type": "password",
+        "placeholder": "Enter your password",
+        "validation": [
+            {
+                "type": "string"
+            },
+            {
+                "required": true,
+                "message": "Password is required"
+            },
+            {
+                "min": 6,
+                "message": "Password must be at least 6 characters"
+            }
+        ]
+    },
+    {
+        "label": "Stay Logged In",
+        "name": "stayLoggedIn",
+        "type": "radio",
+        "options": [
+            {
+                "label": "Yes",
+                "value": "yes"
+            },
+            {
+                "label": "No",
+                "value": "no"
+            }
+        ],
+        "validation": [
+            {
+                "type": "radio"
+            },
+            {
+                "required": false
+            }
+        ]
+    }
+]

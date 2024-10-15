@@ -1,74 +1,74 @@
 {
     "container": {
-        "background": "#2c2c2c",
+        "background": "#f0f8ff",
         "padding": "20px",
         "borderRadius": "10px",
-        "boxShadow": "0 4px 8px rgba(0, 0, 0, 0.3)"
+        "boxShadow": "0 4px 8px rgba(0, 0, 0, 0.1)"
     },
-    "formName": "User Registration Form",
+    "formName": "Feedback",
     "formNameStyle": {
-        "color": "#eaeaea",
-        "background": "#444444",
+        "color": "#ff6347",
+        "background": "#ffe4e1",
         "padding": "10px",
         "borderRadius": "5px",
         "fontSize": "1.5rem",
         "textAlign": "center",
-        "boxShadow": "0 2px 4px rgba(0, 0, 0, 0.2)"
+        "boxShadow": "0 2px 4px rgba(0, 0, 0, 0.1)"
     },
-    "submitButtonLabel": "Register",
+    "submitButtonLabel": "Send Feedback",
     "inputBox": {
         "width": "100%",
         "padding": "10px",
         "borderRadius": "5px",
-        "border": "1px solid #555555",
+        "border": "1px solid #ff8c00",
         "marginBottom": "10px",
         "boxSizing": "border-box",
-        "color": "#eaeaea",
-        "background": "#333333"
+        "color": "#333",
+        "background": "#ffffff"
     },
     "inputBoxLabel": {
-        "color": "#eaeaea",
+        "color": "#4682b4",
         "fontSize": "1.2rem",
         "marginBottom": "5px",
         "display": "block"
     },
     "defaultInput": {
-        "background": "#444444",
-        "border": "1px solid #555555",
+        "background": "#ffffff",
+        "border": "1px solid #add8e6",
         "borderRadius": "5px",
         "padding": "8px",
         "fontSize": "1rem",
-        "color": "#eaeaea"
+        "color": "#333"
     },
     "errorMessage": {
-        "color": "#e74c3c",
+        "color": "#ff4500",
         "fontSize": "0.9rem",
         "marginTop": "5px"
     },
     "dropDownMenu": {
-        "color": "#eaeaea",
-        "background": "#333333",
-        "border": "1px solid #555555",
+        "color": "#333",
+        "background": "#fff",
+        "border": "1px solid #ff8c00",
         "borderRadius": "5px",
         "padding": "8px",
         "fontSize": "1rem"
     },
     "radioButton": {
-        "color": "#3498db",
+        "color": "#32cd32",
         "marginRight": "10px"
     },
     "checkbox": {
-        "color": "#3498db",
+        "color": "#ffa500",
         "marginRight": "10px"
     },
     "submitButton": {
         "color": "#fff",
-        "background": "#3498db",
+        "background": "#32cd32",
         "padding": "10px 20px",
         "border": "none",
         "borderRadius": "5px",
         "fontSize": "1.2rem",
         "cursor": "pointer",
-        "boxShadow": "0 4px 6px rgba(0, 0, 0, 0.3)"
+        "boxShadow": "0 4px 6px rgba(0, 0, 0, 0.1)"
     }
 }

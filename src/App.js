@@ -1,8 +1,10 @@
 import './App.css';
 import FormViews from './components/FormViews';
 import formStyle1 from './templates/formStyle1.json';
+import formStyle2 from './templates/formStyle2.json';
 import formTemplate1 from './templates/formTemplate1.json';
 import formTemplate2 from './templates/formTemplate2.json';
+import formTemplate3 from './templates/formTemplate3.json';
 
 function App() {
 
@@ -32,6 +34,17 @@ function App() {
       <div className="Page">
         <FormViews
           formTemplate={formTemplate2}
+          formStyle={formStyle2}
+          handleFormSubmit={handleFormSubmit}
+        />
+      </div>
+
+      <br />
+      <br />
+
+      <div className="Page">
+        <FormViews
+          formTemplate={formTemplate3}
           handleFormSubmit={handleFormSubmit}
         />
       </div>
