@@ -1,5 +1,5 @@
 import './App.css';
-import FormCreator from './components/FormCreator';
+import FormViews from './components/FormViews';
 
 function App() {
 
@@ -177,10 +177,10 @@ function App() {
       <h1>Dynamic Form Test</h1>
 
       <div className="Page">
-        <FormCreator
+        <FormViews
           formTemplate={formTemplate1}
           formStyle={formStyle1}
-          onSubmit={handleFormSubmit}
+          handleFormSubmit={handleFormSubmit}
         />
       </div>
 
@@ -188,9 +188,9 @@ function App() {
       <br />
 
       <div className="Page">
-        <FormCreator
+        <FormViews
           formTemplate={formTemplate2}
-          onSubmit={handleFormSubmit}
+          handleFormSubmit={handleFormSubmit}
         />
       </div>
 
