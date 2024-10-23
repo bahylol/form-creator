@@ -38,6 +38,12 @@
         ]
     },
     {
+        "label": "Profile Picture",
+        "name": "profilePicture",
+        "type": "file",
+        "placeholder": "Please Upload Profile Picture"
+    },
+    {
         "label": "Email",
         "name": "email",
         "type": "email",

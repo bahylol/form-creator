@@ -61,6 +61,14 @@
         "color": "#3498db",
         "marginRight": "10px"
     },
+    "fileInput": {
+        "background": "#444444",
+        "border": "1px solid #555555",
+        "borderRadius": "5px",
+        "padding": "8px",
+        "fontSize": "1rem",
+        "color": "#eaeaea"
+    },
     "submitButton": {
         "color": "#fff",
         "background": "#3498db",
