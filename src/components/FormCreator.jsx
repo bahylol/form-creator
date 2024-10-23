@@ -4,12 +4,21 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import './FormCreator.css';
 import { mapValidationRule } from '../utils/yupMapper';
+import { UploadIcon } from '../utils/icons';
 
 const FormCreator = ({ formTemplate, formStyle, onSubmit }) => {
 
     if (!formStyle) {
         formStyle = {};
     }
+
+    const handleFileUpload = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const label = event.target.nextElementSibling;
+            label.innerHTML = `File Uploaded Successfully: ${file.name}`;
+        }
+    };
 
     // Build the Yup validation schema based on formTemplate
     const validationSchema = yup.object().shape(
@@ -37,7 +46,7 @@ const FormCreator = ({ formTemplate, formStyle, onSubmit }) => {
 
             <form className="form" onSubmit={handleSubmit(onSubmitForm)}>
                 {formTemplate.map((field, index) => (
-                    <div className="input-box"  style={formStyle.inputBox} key={index}>
+                    <div className="input-box" style={formStyle.inputBox} key={index}>
 
                         {/* Label with with error display */}
                         <label htmlFor={field.name} style={formStyle.inputBoxLabel}>
@@ -51,70 +60,89 @@ const FormCreator = ({ formTemplate, formStyle, onSubmit }) => {
                             name={field.name}
                             render={({ field: controllerField }) => (
 
-                                // Drop down menu
-                                field.type === 'select' ? (
-                                    <select style={formStyle.dropDownMenu} {...controllerField}>
-                                        {field.options.map((option, idx) => (
-                                            <option key={idx} value={option}>
-                                                {option}
-                                            </option>
-                                        ))}
-                                    </select>
+                                // File Upload Input
+                                field.type === 'file' ? (
+                                    <div className="file-upload">
+                                        <input
+                                            type="file"
+                                            id={field.name}
+                                            onChange={handleFileUpload}
+                                            style={{ display: 'none' }}
+                                        />
+                                        <label
+                                            htmlFor={field.name}
+                                            className="custom-file-upload"
+                                            style={formStyle.fileInput}
+                                        >
+                                            <UploadIcon /> {field.placeholder}
+                                        </label>
+                                    </div>
                                 ) :
 
-                                    //Radio Buttons
-                                    field.type === 'radio' ? (
-                                        <div className="radio-group">
-                                            {field.options.map((option, i) => (
-                                                <div className="radio-option" key={i}>
-                                                    <input
-                                                        type="radio"
-                                                        value={option.value}
-                                                        id={`${field.name}-${option.value}`}
-                                                        checked={controllerField.value === option.value}
-                                                        onChange={() => controllerField.onChange(option.value)}
-                                                    />
-                                                    <label htmlFor={`${field.name}-${option.value}`} style={formStyle.radioButton}>{option.label}</label>
-                                                </div>
+                                    // Drop down menu
+                                    field.type === 'select' ? (
+                                        <select style={formStyle.dropDownMenu} {...controllerField}>
+                                            {field.options.map((option, idx) => (
+                                                <option key={idx} value={option}>
+                                                    {option}
+                                                </option>
                                             ))}
-                                        </div>
+                                        </select>
                                     ) :
 
-                                        // Check Boxes
-                                        field.type === 'checkbox' ? (
-                                            <div className="checkbox-group">
+                                        //Radio Buttons
+                                        field.type === 'radio' ? (
+                                            <div className="radio-group">
                                                 {field.options.map((option, i) => (
-                                                    <div className="checkbox-option" key={i}>
+                                                    <div className="radio-option" key={i}>
                                                         <input
-                                                            type="checkbox"
+                                                            type="radio"
                                                             value={option.value}
                                                             id={`${field.name}-${option.value}`}
-                                                            checked={controllerField.value?.includes(option.value) || false}
-                                                            onChange={() => {
-                                                                const currentValue = controllerField.value || []; // Default to an empty array if undefined
-                                                                if (currentValue.includes(option.value)) {
-                                                                    controllerField.onChange(currentValue.filter(val => val !== option.value));
-                                                                } else {
-                                                                    controllerField.onChange([...currentValue, option.value]);
-                                                                }
-                                                            }}
+                                                            checked={controllerField.value === option.value}
+                                                            onChange={() => controllerField.onChange(option.value)}
                                                         />
-                                                        <label htmlFor={`${field.name}-${option.value}`} style={formStyle.checkbox}>
-                                                            {option.label}
-                                                        </label>
+                                                        <label htmlFor={`${field.name}-${option.value}`} style={formStyle.radioButton}>{option.label}</label>
                                                     </div>
                                                 ))}
                                             </div>
-                                        ) : (
+                                        ) :
 
-                                            //Default
-                                            <input
-                                                type={field.type}
-                                                placeholder={field.placeholder}
-                                                {...controllerField}
-                                                style={formStyle.defaultInput}
-                                            />
-                                        )
+                                            // Check Boxes
+                                            field.type === 'checkbox' ? (
+                                                <div className="checkbox-group">
+                                                    {field.options.map((option, i) => (
+                                                        <div className="checkbox-option" key={i}>
+                                                            <input
+                                                                type="checkbox"
+                                                                value={option.value}
+                                                                id={`${field.name}-${option.value}`}
+                                                                checked={controllerField.value?.includes(option.value) || false}
+                                                                onChange={() => {
+                                                                    const currentValue = controllerField.value || []; // Default to an empty array if undefined
+                                                                    if (currentValue.includes(option.value)) {
+                                                                        controllerField.onChange(currentValue.filter(val => val !== option.value));
+                                                                    } else {
+                                                                        controllerField.onChange([...currentValue, option.value]);
+                                                                    }
+                                                                }}
+                                                            />
+                                                            <label htmlFor={`${field.name}-${option.value}`} style={formStyle.checkbox}>
+                                                                {option.label}
+                                                            </label>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            ) : (
+
+                                                //Default
+                                                <input
+                                                    type={field.type}
+                                                    placeholder={field.placeholder}
+                                                    {...controllerField}
+                                                    style={formStyle.defaultInput}
+                                                />
+                                            )
                             )}
                         />
                     </div>

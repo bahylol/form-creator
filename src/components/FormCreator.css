@@ -28,9 +28,9 @@
 
 .form {
     display: flex;
-    flex-direction: row; 
-    flex-wrap: wrap; 
-    gap: 12px; 
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
     margin-top: 20px;
 }
 
@@ -82,7 +82,7 @@ h1 {
 .radio-group,
 .checkbox-group {
     display: flex;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
     margin-top: 8px;
 }
 
@@ -109,6 +109,19 @@ h1 {
 .checkbox-option label {
     font-size: 1.1rem;
     cursor: pointer;
+}
+
+.custom-file-upload {
+    height: 50px;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 8px;
+    padding: 0 15px;
+    margin-top: 8px;
+    width: 100%;
+    display: inline-flex; 
+    align-items: center;
+    gap: 8px;
 }
 
 .error-message {
