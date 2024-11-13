@@ -5,6 +5,7 @@ import * as yup from 'yup';
 import './FormCreator.css';
 import { mapValidationRule } from '../utils/yupMapper';
 import { UploadIcon } from '../utils/icons';
+import JoditEditor from 'jodit-react';
 
 const FormCreator = ({ formTemplate, formStyle, onSubmit }) => {
 
@@ -37,6 +38,20 @@ const FormCreator = ({ formTemplate, formStyle, onSubmit }) => {
 
     const onSubmitForm = (data) => {
         onSubmit(data);
+    };
+
+    const joditConfig = {
+        uploader: {
+            insertImageAsBase64URI: false,
+            url: 'https://your-server.com/upload',
+        },
+        readonly: false,
+        width: '100%',
+        height: 'auto',
+        toolbarSticky: false,
+        toolbarAdaptive: true,
+        placeholder: 'Start typing here...',
+        theme: 'default', 
     };
 
     return (
@@ -133,16 +148,28 @@ const FormCreator = ({ formTemplate, formStyle, onSubmit }) => {
                                                         </div>
                                                     ))}
                                                 </div>
-                                            ) : (
 
-                                                //Default
-                                                <input
-                                                    type={field.type}
-                                                    placeholder={field.placeholder}
-                                                    {...controllerField}
-                                                    style={formStyle.defaultInput}
-                                                />
-                                            )
+                                            ) :
+
+                                                // Advance editor
+                                                field.type === 'advanced' ? (
+                                                    <div className="jodit-editor-wrapper" style={{ marginTop: '8px' }}>
+                                                        <JoditEditor
+                                                            value={field.placeholder || ''}
+                                                            config={joditConfig}
+                                                            onBlur={controllerField.onChange}
+                                                        />
+                                                    </div>
+                                                ) : (
+
+                                                    //Default
+                                                    <input
+                                                        type={field.type}
+                                                        placeholder={field.placeholder}
+                                                        {...controllerField}
+                                                        style={formStyle.defaultInput}
+                                                    />
+                                                )
                             )}
                         />
                     </div>
