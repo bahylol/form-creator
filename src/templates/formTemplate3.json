@@ -56,5 +56,11 @@
                 "required": false
             }
         ]
+    },
+    {
+        "label": "Post",
+        "name": "Post",
+        "type": "advanced",
+        "placeholder": "example post..."
     }
 ]
