@@ -43,7 +43,8 @@ const FormCreator = ({ formTemplate, formStyle, onSubmit }) => {
     const joditConfig = {
         uploader: {
             insertImageAsBase64URI: false,
-            url: 'https://your-server.com/upload',
+            url: process.env.REACT_APP_IMAGES_URL,
+            format: 'json'
         },
         readonly: false,
         width: '100%',
@@ -51,7 +52,7 @@ const FormCreator = ({ formTemplate, formStyle, onSubmit }) => {
         toolbarSticky: false,
         toolbarAdaptive: true,
         placeholder: 'Start typing here...',
-        theme: 'default', 
+        theme: 'default',
     };
 
     return (
