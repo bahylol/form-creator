@@ -7,7 +7,7 @@ import { mapValidationRule } from '../utils/yupMapper';
 import { UploadIcon } from '../utils/icons';
 import JoditEditor from 'jodit-react';
 
-const FormCreator = ({ formTemplate, formStyle, onSubmit }) => {
+const FormCreator = ({ formTemplate, formStyle, imageURL, onSubmit }) => {
 
     if (!formStyle) {
         formStyle = {};
@@ -43,7 +43,7 @@ const FormCreator = ({ formTemplate, formStyle, onSubmit }) => {
     const joditConfig = {
         uploader: {
             insertImageAsBase64URI: false,
-            url: process.env.REACT_APP_IMAGES_URL,
+            url: imageURL,
             format: 'json'
         },
         readonly: false,
