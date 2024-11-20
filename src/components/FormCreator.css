@@ -135,6 +135,10 @@ h1 {
     font-size: 0.85rem;
 }
 
+.jodit-status-bar .jodit-status-bar__item.jodit-status-bar__item-right {
+    display: none;
+}
+
 @media (max-width: 500px) {
     .container {
         min-width: auto;
