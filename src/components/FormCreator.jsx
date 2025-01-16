@@ -7,7 +7,7 @@ import { mapValidationRule } from '../utils/yupMapper';
 import { UploadIcon } from '../utils/icons';
 import JoditEditor from 'jodit-react';
 
-const FormCreator = ({ formTemplate, formStyle, imageURL, onSubmit }) => {
+const FormCreator = ({ formTemplate, formStyle, initialData, imageURL, onSubmit }) => {
 
     if (!formStyle) {
         formStyle = {};
@@ -34,6 +34,7 @@ const FormCreator = ({ formTemplate, formStyle, imageURL, onSubmit }) => {
     // useForm hook from react-hook-form
     const { handleSubmit, control, formState: { errors } } = useForm({
         resolver: yupResolver(validationSchema),
+        defaultValues: initialData,
     });
 
     const onSubmitForm = (data) => {
