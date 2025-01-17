@@ -153,13 +153,15 @@ const FormCreator = ({ formTemplate, formStyle, initialData, imageURL, onSubmit 
 
                                             ) :
 
-                                                // Advance editor
+                                                // Advanced Editor
                                                 field.type === 'advanced' ? (
                                                     <div className="jodit-editor-wrapper" style={{ marginTop: '8px' }}>
                                                         <JoditEditor
-                                                            value={field.placeholder || ''}
+                                                            type={field.type}
+                                                            value={initialData?.[field.name] || field.placeholder || controllerField.value || ''}
                                                             config={joditConfig}
-                                                            onBlur={controllerField.onChange}
+                                                            onBlur={(newValue) => controllerField.onChange(newValue)}
+                                                            onChange={(newValue) => controllerField.onChange(newValue)}
                                                         />
                                                     </div>
                                                 ) : (
